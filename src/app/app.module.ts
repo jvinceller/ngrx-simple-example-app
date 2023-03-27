@@ -1,12 +1,11 @@
 import {inject, NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {createAction, createReducer, createSelector, on, props, StoreModule} from "@ngrx/store";
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {Actions, createEffect, EffectsModule, ofType} from "@ngrx/effects";
 import {FakeService} from "./fake.service";
 import {catchError, exhaustMap, map, of} from "rxjs";
+import {BrowserModule} from "@angular/platform-browser";
 
 interface MyStoreState {
   featureState: MyFeatureState;
@@ -67,7 +66,6 @@ export const counterSelector = createSelector(selectFeature, selectFeatureCounte
     StoreModule.forRoot({
       featureState: statusReducer
     }),
-    StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot({
       loadEffect
     })
